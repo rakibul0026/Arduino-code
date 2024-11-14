@@ -9,3 +9,4 @@ TOP Arduino Projects 2024
 7. tempreture metre with Arduino(Need to LCD display and I2C Module)
 8.Keypad Locking System(Need to LCD display)
 9.Temperature & Humidity Device(Need to LCD display)
+10.Obstacle Detecting Glasses with Arduino
