@@ -1,5 +1,4 @@
 int i;
-
 void setup() {
   for (i = 3; i <= 8; i++) {
     pinMode(i, OUTPUT); 
