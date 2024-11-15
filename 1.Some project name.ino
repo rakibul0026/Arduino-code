@@ -1,4 +1,13 @@
+Fundings of IOT
 
+1. https://idea.gov.bd/portfolio
+
+2. MOICT Fellowship from ICT Division of Bangladesh (3.3 lakhs BDT) http://ims.ictd.gov.bd/login
+
+3. NST Fellowship (54 thousands)
+
+4. A2i
+  
 TOP Arduino Projects 2024
 1.Smart Door By Arduino
 2.Smart Dustbin DIY
