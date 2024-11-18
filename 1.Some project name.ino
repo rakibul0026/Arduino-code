@@ -24,3 +24,4 @@ TOP Arduino Projects 2024
 13.Control Password
 14.Arduino fire alarm system 
 15.Make Automatic Door Opening Using Arduino and PIR Sensor 
+16.2-DOF Cardboard Robotic Arm
