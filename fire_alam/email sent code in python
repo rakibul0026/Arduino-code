@@ -1,0 +1,38 @@
+import serial
+import smtplib
+from email.mime.text import MIMEText
+
+arduino_port = "COM7"
+baud_rate = 9600
+ser = serial.Serial(arduino_port, baud_rate)
+
+
+sender_email = "rakibulhassanratulkhan84@gmail.com"
+receiver_email = "rakibulhassanratulkhan@gmail.com"
+password = "udug yxft lwnw vcel"
+
+def send_email(message):
+    try:
+
+        server = smtplib.SMTP('smtp.gmail.com', 587)
+        server.starttls()
+        server.login(sender_email, password)
+
+
+        msg = MIMEText(message)
+        msg['Subject'] = "Fire Alert!"
+        msg['From'] = sender_email
+        msg['To'] = receiver_email
+
+
+        server.sendmail(sender_email, receiver_email, msg.as_string())
+        server.quit()
+        print("Email sent successfully.")
+    except Exception as e:
+        print(f"Error sending email: {e}")
+
+while True:
+    if ser.in_waiting > 0:
+        data = ser.readline().decode('utf-8').strip()
+        if "FIRE DETECTED" in data:
+            send_email("Fire detected by your Arduino flame sensor!")
