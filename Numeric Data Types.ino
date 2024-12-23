@@ -9,7 +9,18 @@ void setup() {
   Serial.print("Byte value: ");
   Serial.println(myByte);
 
-  // Integer: 16-bit signed integer (-32,768 to 32,767)
+   // word 16-bit unsigned integer (0 to 65535)
+  word myword = 2558;
+  Serial.print("Byte value: ");
+  Serial.println(myword);
+
+   // short 16-bit unsigned integer (-32768 to 32767)
+  word myshort = 2558;
+  Serial.print("Byte value: ");
+  Serial.println(myshort);
+
+  
+// Integer: 16-bit signed integer (-32,768 to 32,767)
   int myInt = -32768;
   Serial.print("Integer value: ");
   Serial.println(myInt);
