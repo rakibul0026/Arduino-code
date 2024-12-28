@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arduino Motor Control</title>
+</head>
+<body>
+  <h1>Arduino Motor Control</h1>
+  <p>Click "Connect" to select the correct COM port for your Arduino.</p>
+  <button onclick="connectToPort()">Connect</button>
+  <button onclick="sendCommand('F')">Stepper Forward</button>
+  <button onclick="sendCommand('B')">Stepper Backward</button>
+  <button onclick="sendCommand('S')">Servo 0°</button>
+  <button onclick="sendCommand('E')">Servo 180°</button>
+
+  <script>
+    let port; // Holds the Serial port connection
+
+    async function connectToPort() {
+      if (!("serial" in navigator)) {
+        alert("Web Serial API not supported in your browser.");
+        return;
+      }
+
+      try {
+        // Request user to select a serial port
+        port = await navigator.serial.requestPort();
+
+        // Open the selected serial port
+        await port.open({ baudRate: 9600 });
+        alert("Connected successfully!");
+      } catch (error) {
+        console.error("Error connecting to the port:", error);
+        alert("Failed to connect. Ensure your Arduino is on COM7.");
+      }
+    }
+
+    async function sendCommand(command) {
+      if (!port) {
+        alert("Connect to the Arduino first.");
+        return;
+      }
+
+      try {
+        const encoder = new TextEncoderStream();
+        const writableStreamClosed = encoder.readable.pipeTo(port.writable);
+        const writer = encoder.writable.getWriter();
+
+        await writer.write(command); // Send command
+        writer.releaseLock();
+        await writableStreamClosed;
+      } catch (error) {
+        console.error("Error sending command:", error);
+        alert("Failed to send command. Check the connection.");
+      }
+    }
+  </script>
+</body>
+</html>
